@@ -21,7 +21,7 @@
  -Java 11, Spring boot 2.4 e Maven
  
  ```sh
-git clone  
+git clone https://github.com/sauloiot/perfil-profissional.git
 cd quotation
 mvnw spring-boot:run
 ```
@@ -83,7 +83,7 @@ spring.jpa.properties.hibernate.format_sql=false
  A opção gera o build se estiver conectado no PostgreSql.
   ```sh
  mvnw clean package spring-boot:repackage
- java -jar target/-0.0.1-SNAPSHOT.jar
+java -jar target/perfilProfissional-0.0.1-SNAPSHOT.jar
 ```
 
  # Author
