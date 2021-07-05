@@ -6,7 +6,7 @@
  
  ## Links
  ### -[Postman contendo todas as requisições de API](https://documenter.getpostman.com/view/5414747/Tzm2KdxK)
-  
+ ### - Ou Swagger rodando no localhost localhost:8080/swagger-ui.html (8080 por padrão ou na porta definida)
  # Tecnologias e ferramentas utilizadas
  - Java 11  
  - Spring Boot 2.4

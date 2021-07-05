@@ -4,6 +4,7 @@ import com.ghost.perfilProfissional.dtos.ContatoDTO;
 import com.ghost.perfilProfissional.dtos.converter.ContatoDTOConverter;
 import com.ghost.perfilProfissional.models.Contato;
 import com.ghost.perfilProfissional.services.ContatoService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +24,7 @@ public class ContatoController {
 
     //ROTA PARA PESQUISA POR PARAMETROS q PARA PESQUIA GERAL, id, nome, contato PARA PESQUISA ESPECIFICA.
     @GetMapping(value = "/fields")
+    @ApiOperation(value="Retorna o profissional com base nos parametros: '?q=' para pesquisa geral, '?id=' para id, '?nome=' para nome, '?contato=' para contato")
     public ResponseEntity<Page<Contato>> searchByPesquisa(
             @RequestParam(defaultValue = "") String q,
             @RequestParam(defaultValue = "") Integer id,
@@ -35,6 +37,7 @@ public class ContatoController {
 
     //ROTA DE PESQUISA POR ID DO CONTATO
     @RequestMapping(value="/{id}", method= RequestMethod.GET)
+    @ApiOperation(value="Retorna o contato pelo seu id")
     public ResponseEntity<Contato> findById(@PathVariable Integer id) {
         Contato obj = contatoService.findById(id);
 
@@ -43,6 +46,7 @@ public class ContatoController {
 
     //ROTA PARA CRIAÇÃO DE CONTATO
     @RequestMapping(method = RequestMethod.POST)
+    @ApiOperation(value="Cria um contato")
     public ResponseEntity<Void> insert(@RequestBody ContatoDTO dto){
         Contato contato = ContatoDTOConverter.dtoToEntity(dto);
         contato = contatoService.insert(contato);
@@ -56,6 +60,7 @@ public class ContatoController {
 
     //ROTA PARA EDIÇÃO DE CONTATO
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @ApiOperation(value="Edita o contato pelo seu id")
     public ResponseEntity<Void> update(@RequestBody ContatoDTO dto, @PathVariable Integer id ){
         Contato obj = ContatoDTOConverter.dtoToEntity(dto);
         obj.setId(id);
@@ -65,6 +70,7 @@ public class ContatoController {
 
     //ROTA PARA DELEÇÃO DE CONTATO
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+    @ApiOperation(value="Deleta o contato pelo seu id")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         contatoService.deleteById(id);
         return ResponseEntity.noContent().build();
